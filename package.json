@@ -1,6 +1,6 @@
 {
   "name": "redux-waitfor-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight Redux middleware to assert on actions being dispatched",
   "main": "lib/index.js",
   "scripts": {
