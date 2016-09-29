@@ -1,6 +1,10 @@
 // @flow
 
-export default function createWaitForMiddleware() {
+export default function createWaitForMiddleware(verbose: bool) {
+  if (verbose) {
+    console.log('WaitForMiddleware - created'); // eslint-disable-line no-console
+  }
+
   /**
    * Array of actions recorded by the middleware since the last clean() :
    */
@@ -53,6 +57,9 @@ export default function createWaitForMiddleware() {
    * Redux middleware function :
    */
   const middleware = () => (next: (action: Object) => Object) => (action: Object) => {
+    if (verbose) {
+      console.log(`WaitForMiddleware - Received action : ${action.type}`); // eslint-disable-line no-console
+    }
     records.push(action);
     waitedQueue.forEach(waited => {
       waited.resolver();
@@ -66,6 +73,13 @@ export default function createWaitForMiddleware() {
   middleware.clean = () => {
     records = [];
     waitedQueue = [];
+  };
+
+  /**
+   * Clear the recorded actions array AND the waited actions queue :
+   */
+  middleware.getRecordedActions = () => {
+    return this.records;
   };
 
   /**
