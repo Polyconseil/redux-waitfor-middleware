@@ -15,7 +15,7 @@ Then, you can use it in tests to wait for a given action to be dispatched before
 
 ```javascript
 import createWaitForMiddleware from 'redux-waitfor-middleware';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
   
 const reducers = [
   /* import your reducers */
@@ -54,7 +54,7 @@ Check-list :
 describe('Potatoes list', () => {
   it('should load a list of 5 potatoes', async () => {
     // fire a request to the back-end, for example by simulating
-    // a click on the "load potaotes" button
+    // a click on the "load potatoes" button
     
     // This line will throw an Error if the POTATOES_RECEIVED action is not dispatched
     // before 5000 ms, marking the test as failed :
